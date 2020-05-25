@@ -6,6 +6,8 @@ import { AppState } from '../types'
 import createRootReducer from './reducers'
 import rootSaga from './sagas'
 
+// import useCountries from '../pages/Countries'
+
 const initState: AppState = {
   product: {
     inCart: [],
@@ -13,7 +15,11 @@ const initState: AppState = {
   ui: {
     dialogOpen: {},
   },
+  countries: {
+    dataCountries: [],
+  },
 }
+console.log('init', initState)
 
 export default function makeStore(initialState = initState) {
   const sagaMiddleware = createSagaMiddleware()

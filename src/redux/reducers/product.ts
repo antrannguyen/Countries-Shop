@@ -14,7 +14,9 @@ export default function product(
   switch (action.type) {
   case ADD_PRODUCT: {
     const { product } = action.payload
-    if (state.inCart.find(p => p.id === product.id)) {
+    console.log('product', product)
+
+    if (state.inCart.find((p) => p.id === product.id)) {
       return state
     }
     // Always return new state (e.g, new object) if changed
@@ -23,7 +25,7 @@ export default function product(
 
   case REMOVE_PRODUCT: {
     const { product } = action.payload
-    const index = state.inCart.findIndex(p => p.id === product.id)
+    const index = state.inCart.findIndex((p) => p.id === product.id)
     if (index >= 0) {
       state.inCart.splice(index, 1)
       return { ...state, inCart: [...state.inCart] }

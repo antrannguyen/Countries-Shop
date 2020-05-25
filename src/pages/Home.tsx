@@ -11,6 +11,8 @@ export default function Home() {
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.product.inCart)
 
+  console.log(products)
+
   const handleAddProduct = () => {
     const product: Product = {
       id: (+new Date()).toString(),
@@ -25,7 +27,7 @@ export default function Home() {
       <h1>Home page</h1>
       {products.length <= 0 && <div>No products in cart</div>}
       <ul>
-        {products.map(p => (
+        {products.map((p) => (
           <li key={p.id}>
             <Link to={`/products/${p.id}`}>{`${p.name} - $${p.price}`}</Link>
             <button onClick={() => dispatch(removeProduct(p))}>Remove</button>
