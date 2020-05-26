@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { AppState } from '../types'
 import { requestAPIs } from '../redux/actions'
+import SearchInput from '../components/SearchBar'
 
 export default function Countries() {
   const dispatch = useDispatch()
@@ -13,16 +13,9 @@ export default function Countries() {
     dispatch(requestAPIs())
   }, [dispatch])
 
-  // const languages = () => {
-  //   countries?.map((country) => {
-  //     country.languages.map((lang) => console.log(lang.name))
-  //   })
-  // }
-
-  // console.log('langhgy', languages())
-
   return (
     <div>
+      <SearchInput />
       <h1> Countries List</h1>
       {countries?.map((country, index) => (
         <div key={index}>
@@ -30,7 +23,7 @@ export default function Countries() {
           <div> {country.population}</div>
           <div>
             {country.languages.map((lang, index) => (
-              <div key={index}>{lang.name} </div>
+              <li key={index}>{lang.name} </li>
             ))}
           </div>
           <img src={country.flag} height="30" width="40" alt="Flag" />

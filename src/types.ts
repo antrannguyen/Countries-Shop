@@ -2,16 +2,14 @@
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
+
 export const REQUEST_APIS = 'REQUEST_APIS'
 export const RECEIVE_DATA = 'RECEIVE_DATA'
+export const SEARCH_COUNTRY = 'SEARCH_COUNTRY'
+export const ADD_COUNTRY = 'ADD_COUNTRY'
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY'
 
-// Enum
-export enum DialogType {
-  SignIn = 'signIn',
-  SignUp = 'signUp',
-}
-
-// Countries Data APIs
+// Countries
 export type CountriesData = {
   name: string
   languages: { name: string }[]
@@ -27,6 +25,27 @@ export type RequestAPIs = {
 export type ReceiveDataAction = {
   type: typeof RECEIVE_DATA
   payload: { dataCountries: CountriesData[] }
+}
+
+export type SearchCountrytAction = {
+  type: typeof SEARCH_COUNTRY
+  payload: {
+    searchCountry: string | undefined
+  }
+}
+
+export type AddCountrytAction = {
+  type: typeof ADD_COUNTRY
+  payload: {
+    country: CountriesData
+  }
+}
+
+export type RemoveCountryAction = {
+  type: typeof REMOVE_COUNTRY
+  payload: {
+    country: CountriesData
+  }
 }
 
 // A product
@@ -50,6 +69,12 @@ export type RemoveProductAction = {
   }
 }
 
+// Enum
+export enum DialogType {
+  SignIn = 'signIn',
+  SignUp = 'signUp',
+}
+
 export type ToggleDialogAction = {
   type: typeof TOGGLE_DIALOG
   payload: {
@@ -59,13 +84,6 @@ export type ToggleDialogAction = {
 
 export type UiActions = ToggleDialogAction
 
-// Use this union in reducer
-export type ProductActions = AddProductAction | RemoveProductAction
-
-export type ProductState = {
-  inCart: Product[]
-}
-
 // Using dynamic keys from an enum
 export type UiState = {
   dialogOpen: {
@@ -73,14 +91,28 @@ export type UiState = {
   }
 }
 
-export type CountriesActions = RequestAPIs | ReceiveDataAction
+// Use this union in reducer
+export type ProductActions = AddProductAction | RemoveProductAction
+
+export type ProductState = {
+  inCart: Product[]
+}
+
+export type CountriesActions =
+  | RequestAPIs
+  | ReceiveDataAction
+  | SearchCountrytAction
+  | AddCountrytAction
+  | RemoveCountryAction
 
 export type CountriesState = {
   dataCountries: CountriesData[]
+  inCart: CountriesData[]
+  searchCountry: string | undefined
 }
 
 export type AppState = {
   product: ProductState
   ui: UiState
-  countries?: CountriesState
+  countries: CountriesState
 }

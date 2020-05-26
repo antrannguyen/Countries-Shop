@@ -1,11 +1,15 @@
-// import { Dispatch } from 'redux'
-
 import {
   REQUEST_APIS,
   RECEIVE_DATA,
+  SEARCH_COUNTRY,
+  ADD_COUNTRY,
+  REMOVE_COUNTRY,
   CountriesActions,
   ReceiveDataAction,
   CountriesData,
+  SearchCountrytAction,
+  AddCountrytAction,
+  RemoveCountryAction,
 } from '../../types'
 
 // Countries
@@ -24,13 +28,29 @@ export function receiveData(data: CountriesData[]): ReceiveDataAction {
   }
 }
 
-// An Example of Async action processed by redux-thunk middleware
-// export function fetchCountries(data: CountriesData) {
-//   return (dispatch: Dispatch) => {
-//     return fetch('https://restcountries.eu/rest/v2/all')
-//       .then((resp) => resp.json())
-//       .then((data) => {
-//         dispatch(receiveData(data))
-//       })
-//   }
-// }
+export function searchCountry(searchCountry: string): SearchCountrytAction {
+  return {
+    type: SEARCH_COUNTRY,
+    payload: {
+      searchCountry: searchCountry,
+    },
+  }
+}
+
+export function addCountry(country: CountriesData): AddCountrytAction {
+  return {
+    type: ADD_COUNTRY,
+    payload: {
+      country: country,
+    },
+  }
+}
+
+export function removeCountry(country: CountriesData): RemoveCountryAction {
+  return {
+    type: REMOVE_COUNTRY,
+    payload: {
+      country: country,
+    },
+  }
+}

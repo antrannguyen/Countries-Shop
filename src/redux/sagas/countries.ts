@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
-import { REQUEST_APIS, RECEIVE_DATA } from '../../types'
 import { fetchCountries } from '../../Data/fetchCountries'
+import { REQUEST_APIS, RECEIVE_DATA } from '../../types'
 
-function* doSomethingWhenFetchingData() {
+function* fetchingData() {
   try {
     const dataCountries = yield call(fetchCountries)
     yield put({
@@ -17,4 +17,4 @@ function* doSomethingWhenFetchingData() {
   }
 }
 
-export default [takeLatest(REQUEST_APIS, doSomethingWhenFetchingData)]
+export default [takeLatest(REQUEST_APIS, fetchingData)]

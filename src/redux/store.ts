@@ -17,9 +17,10 @@ const initState: AppState = {
   },
   countries: {
     dataCountries: [],
+    inCart: [],
+    searchCountry: '',
   },
 }
-console.log('init', initState)
 
 export default function makeStore(initialState = initState) {
   const sagaMiddleware = createSagaMiddleware()
