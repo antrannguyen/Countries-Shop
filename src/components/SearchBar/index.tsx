@@ -1,51 +1,120 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { searchCountry } from '../../redux/actions'
-import { AppState, CountriesData } from '../../types'
+// import { AppState, CountriesData } from '../../types'
 
-export default function SearchInput() {
-  const [searchInput, setSearchInput] = useState('')
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import InputBase from '@material-ui/core/InputBase'
+import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles'
+import MenuIcon from '@material-ui/icons/Menu'
+import SearchIcon from '@material-ui/icons/Search'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(0.5),
+    },
+    title: {
+      flexGrow: 0.1,
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
+      },
+    },
+    search: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+      },
+    },
+    searchIcon: {
+      padding: theme.spacing(0, 2),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputRoot: {
+      color: 'inherit',
+    },
+    inputInput: {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(5)}px)`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        width: '42ch',
+        '&:focus': {
+          width: '60ch',
+        },
+      },
+    },
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  })
+)
+
+export default function SearchAppBar() {
+  const classes = useStyles()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(searchCountry(searchInput))
-  }, [dispatch, searchInput])
-
-  const countries = useSelector(
-    (state: AppState) => state.countries?.dataCountries
-  )
-
-  const filterSearch = countries.filter((country: { name: string }) =>
-    country.name.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())
-  )
-
-  console.log('filter', filterSearch)
-
-  const yeahCountry = () => {
-    return filterSearch.map((country: CountriesData, index: number) => (
-      <div key={index}>
-        <h3> {country.name}</h3>
-        <div> {country.population}</div>
-        <div>
-          {country.languages.map((lang: { name: string }, index: number) => (
-            <li key={index}>{lang.name} </li>
-          ))}
-        </div>
-        <img src={country.flag} height="30" width="40" alt="Flag" />
-        <div> {country.region}</div>
-      </div>
-    ))
+  const handleSearchCountry = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(searchCountry(event.target.value))
   }
 
-  const handleSearchCountry = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setSearchInput(event.target.value)
-
   return (
-    <div>
-      <h2>Search</h2>
-      <input onChange={handleSearchCountry} />
-      {yeahCountry()}
-      <div> {JSON.stringify(filterSearch)}</div>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Search country
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              onChange={handleSearchCountry}
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <IconButton color="primary" aria-label="add to shopping cart">
+            <AddShoppingCartIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
     </div>
   )
 }

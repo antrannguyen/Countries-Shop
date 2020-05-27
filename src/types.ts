@@ -30,7 +30,7 @@ export type ReceiveDataAction = {
 export type SearchCountrytAction = {
   type: typeof SEARCH_COUNTRY
   payload: {
-    searchCountry: string | undefined
+    searchCountry: string
   }
 }
 
@@ -108,7 +108,7 @@ export type CountriesActions =
 export type CountriesState = {
   dataCountries: CountriesData[]
   inCart: CountriesData[]
-  searchCountry: string | undefined
+  searchCountry: string
 }
 
 export type AppState = {

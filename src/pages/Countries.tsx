@@ -1,22 +1,28 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppState } from '../types'
+import { useDispatch } from 'react-redux'
+// import { AppState } from '../types'
 import { requestAPIs } from '../redux/actions'
-import SearchInput from '../components/SearchBar'
+// import SearchInput from '../components/SearchBar'
+import SimpleTable from '../components/TableCountries'
+// import CustomizedInputBase from '../components/SearchBar'
+// import SearchAppBar from '../components/SearchBar/search'
 
 export default function Countries() {
   const dispatch = useDispatch()
-  const countries = useSelector(
-    (state: AppState) => state.countries?.dataCountries
-  )
+  // const countries = useSelector(
+  //   (state: AppState) => state.countries?.dataCountries
+  // )
   useEffect(() => {
     dispatch(requestAPIs())
   }, [dispatch])
 
   return (
     <div>
-      <SearchInput />
-      <h1> Countries List</h1>
+      {/* <SearchInput /> */}
+      {/* <CustomizedInputBase /> */}
+      {/* <SearchAppBar /> */}
+      <SimpleTable />
+      {/* <h1> Countries List</h1>
       {countries?.map((country, index) => (
         <div key={index}>
           <h3> {country.name}</h3>
@@ -29,7 +35,7 @@ export default function Countries() {
           <img src={country.flag} height="30" width="40" alt="Flag" />
           <div> {country.region}</div>
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }
