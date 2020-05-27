@@ -7,16 +7,20 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 
 import { AppState } from '../../types'
 import { useSelector } from 'react-redux'
 import SearchAppBar from '../SearchBar'
+import { addCountry } from '../../redux/actions/countries'
+import { useDispatch } from 'react-redux'
 
 // const country = useSelector((state: AppState) => state.countries?.searchCountry)
 // console.log('countries', countries)
 // console.log('country', country)
 
 export default function SimpleTable() {
+  const dispatch = useDispatch()
   const useStyles = makeStyles({
     table: {
       minWidth: 450,
@@ -43,6 +47,7 @@ export default function SimpleTable() {
             <TableCell align="right">Languages</TableCell>
             <TableCell align="right">Population</TableCell>
             <TableCell align="right">Region</TableCell>
+            <TableCell align="right">Add</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -52,24 +57,33 @@ export default function SimpleTable() {
                 .toLowerCase()
                 .includes(searchKey.toLowerCase())
             })
-            .map((row, index) => (
+            .map((country, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
                   <img
-                    src={row.flag}
+                    src={country.flag}
                     height="30"
                     width="40"
-                    alt={`Flag of ${row.name}`}
+                    alt={`Flag of ${country.name}`}
                   />
                 </TableCell>
-                <TableCell align="right">{row.name}</TableCell>
+                <TableCell align="right">{country.name}</TableCell>
                 <TableCell align="right">
-                  {row.languages.map((lang, index) => (
+                  {country.languages.map((lang, index) => (
                     <li key={index}>{lang.name}</li>
                   ))}
                 </TableCell>
-                <TableCell align="right">{row.population}</TableCell>
-                <TableCell align="right">{row.region}</TableCell>
+                <TableCell align="right">{country.population}</TableCell>
+                <TableCell align="right">{country.region}</TableCell>
+                <TableCell align="right">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => dispatch(addCountry(country))}
+                  >
+                    Add
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>

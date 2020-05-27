@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { searchCountry } from '../../redux/actions'
+import ShoppingCart from '../ShoppingCart'
+
 // import { AppState, CountriesData } from '../../types'
 
 import AppBar from '@material-ui/core/AppBar'
@@ -11,7 +13,6 @@ import InputBase from '@material-ui/core/InputBase'
 import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: 0,
       width: '100%',
       [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
+        marginLeft: theme.spacing(5),
         width: 'auto',
       },
     },
@@ -66,9 +67,6 @@ const useStyles = makeStyles((theme: Theme) =>
           width: '60ch',
         },
       },
-    },
-    '& > *': {
-      margin: theme.spacing(1),
     },
   })
 )
@@ -110,9 +108,7 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <IconButton color="primary" aria-label="add to shopping cart">
-            <AddShoppingCartIcon />
-          </IconButton>
+          <ShoppingCart />
         </Toolbar>
       </AppBar>
     </div>

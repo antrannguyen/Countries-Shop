@@ -4,12 +4,15 @@ import {
   SEARCH_COUNTRY,
   ADD_COUNTRY,
   REMOVE_COUNTRY,
+  // SHOPPING_CART,
   CountriesActions,
   ReceiveDataAction,
   CountriesData,
   SearchCountrytAction,
   AddCountrytAction,
   RemoveCountryAction,
+  // InCart,
+  // ShoppingCart,
 } from '../../types'
 
 // Countries
@@ -54,3 +57,12 @@ export function removeCountry(country: CountriesData): RemoveCountryAction {
     },
   }
 }
+
+// export function updateShoppingCart(inCart: InCart[]): ShoppingCart {
+//   return {
+//     type: SHOPPING_CART,
+//     payload: {
+//       inCart: inCart,
+//     },
+//   }
+// }

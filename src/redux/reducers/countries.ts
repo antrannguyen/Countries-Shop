@@ -15,6 +15,7 @@ export default function countries(
   }
   case 'ADD_COUNTRY': {
     const { country } = action.payload
+    console.log('staet', state.inCart)
     if (state.inCart.find((c) => c.name === country.name)) {
       return state
     }

@@ -1,15 +1,24 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 
-import { fetchCountries } from '../../Data/fetchCountries'
 import { REQUEST_APIS, RECEIVE_DATA } from '../../types'
 
 function* fetchingData() {
   try {
-    const dataCountries = yield call(fetchCountries)
+    const url = 'https://restcountries.eu/rest/v2/all'
+
+    const cache = yield caches.open('getCountriesData')
+    let cacheReponse = yield cache.match(url)
+
+    if (!cacheReponse || !cacheReponse.ok) {
+      yield cache.add(url)
+      cacheReponse = yield cache.match(url)
+    }
+    const reponse = yield cacheReponse?.json()
+
     yield put({
       type: RECEIVE_DATA,
       payload: {
-        dataCountries: dataCountries,
+        dataCountries: reponse,
       },
     })
   } catch (e) {

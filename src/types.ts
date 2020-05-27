@@ -8,6 +8,7 @@ export const RECEIVE_DATA = 'RECEIVE_DATA'
 export const SEARCH_COUNTRY = 'SEARCH_COUNTRY'
 export const ADD_COUNTRY = 'ADD_COUNTRY'
 export const REMOVE_COUNTRY = 'REMOVE_COUNTRY'
+export const SHOPPING_CART = ' SHOPPING_CART'
 
 // Countries
 export type CountriesData = {
@@ -46,6 +47,16 @@ export type RemoveCountryAction = {
   payload: {
     country: CountriesData
   }
+}
+
+export type InCart = {
+  flag: string
+  name: string
+}
+
+export type ShoppingCart = {
+  type: typeof SHOPPING_CART
+  payload: { inCart: InCart[] }
 }
 
 // A product
@@ -107,7 +118,7 @@ export type CountriesActions =
 
 export type CountriesState = {
   dataCountries: CountriesData[]
-  inCart: CountriesData[]
+  inCart: InCart[]
   searchCountry: string
 }
 
