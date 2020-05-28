@@ -11,47 +11,39 @@ import Button from '@material-ui/core/Button'
 
 import { AppState } from '../../types'
 import { useSelector } from 'react-redux'
-import SearchAppBar from '../SearchBar'
-import { addCountry } from '../../redux/actions/countries'
+import { removeCountry } from '../../redux/actions/countries'
 import { useDispatch } from 'react-redux'
 
 // const country = useSelector((state: AppState) => state.countries?.searchCountry)
 // console.log('countries', countries)
 // console.log('country', country)
 
-export default function CountriesTable() {
+export default function CartPageDrawer() {
   const dispatch = useDispatch()
   const useStyles = makeStyles({
     table: {
       minWidth: 450,
     },
   })
-
-  const countries = useSelector(
-    (state: AppState) => state.countries.dataCountries
-  )
+  const classes = useStyles()
 
   const searchKey = useSelector(
     (state: AppState) => state.countries.searchCountry
   )
-  const classes = useStyles()
+  const inCart = useSelector((state: AppState) => state.countries.inCart)
 
   return (
     <TableContainer component={Paper}>
-      <SearchAppBar />
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="left">Flag</TableCell>
             <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Languages</TableCell>
-            <TableCell align="right">Population</TableCell>
-            <TableCell align="right">Region</TableCell>
-            <TableCell align="right">Add Items</TableCell>
+            <TableCell align="right">Delete Items</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {countries
+          {inCart
             .filter((country) => {
               return country.name
                 .toLowerCase()
@@ -68,20 +60,14 @@ export default function CountriesTable() {
                   />
                 </TableCell>
                 <TableCell align="right">{country.name}</TableCell>
-                <TableCell align="right">
-                  {country.languages.map((lang, index) => (
-                    <li key={index}>{lang.name}</li>
-                  ))}
-                </TableCell>
-                <TableCell align="right">{country.population}</TableCell>
-                <TableCell align="right">{country.region}</TableCell>
+
                 <TableCell align="right">
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => dispatch(addCountry(country))}
+                    onClick={() => dispatch(removeCountry(country))}
                   >
-                    Add
+                    Delete
                   </Button>
                 </TableCell>
               </TableRow>

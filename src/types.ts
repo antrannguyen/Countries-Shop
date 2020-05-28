@@ -49,14 +49,9 @@ export type RemoveCountryAction = {
   }
 }
 
-export type InCart = {
-  flag: string
-  name: string
-}
-
 export type ShoppingCart = {
   type: typeof SHOPPING_CART
-  payload: { inCart: InCart[] }
+  payload: { inCart: CountriesData[] }
 }
 
 // A product
@@ -82,8 +77,8 @@ export type RemoveProductAction = {
 
 // Enum
 export enum DialogType {
-  SignIn = 'signIn',
-  SignUp = 'signUp',
+  SignIn = 1,
+  SignUp,
 }
 
 export type ToggleDialogAction = {
@@ -118,7 +113,7 @@ export type CountriesActions =
 
 export type CountriesState = {
   dataCountries: CountriesData[]
-  inCart: InCart[]
+  inCart: CountriesData[]
   searchCountry: string
 }
 
