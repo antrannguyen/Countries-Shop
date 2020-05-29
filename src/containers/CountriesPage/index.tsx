@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -11,14 +11,11 @@ import Button from '@material-ui/core/Button'
 
 import { AppState } from '../../types'
 import { useSelector } from 'react-redux'
-import SearchAppBar from '../SearchBar'
+import SearchAppBar from '../../components/SearchBar'
 import { addCountry } from '../../redux/actions/countries'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-// const country = useSelector((state: AppState) => state.countries?.searchCountry)
-// console.log('countries', countries)
-// console.log('country', country)
+import ThemeContext from '../../components/Context'
 
 export default function CountriesTable() {
   const dispatch = useDispatch()
@@ -27,6 +24,7 @@ export default function CountriesTable() {
       minWidth: 450,
     },
   })
+  const { themes } = useContext(ThemeContext)
 
   const countries = useSelector(
     (state: AppState) => state.countries.dataCountries
@@ -80,6 +78,7 @@ export default function CountriesTable() {
                 <TableCell>{country.region}</TableCell>
                 <TableCell>
                   <Button
+                    style={{ backgroundColor: themes.background }}
                     variant="contained"
                     color="primary"
                     onClick={() => dispatch(addCountry(country))}

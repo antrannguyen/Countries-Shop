@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -13,10 +13,7 @@ import { AppState } from '../../types'
 import { useSelector } from 'react-redux'
 import { removeCountry } from '../../redux/actions/countries'
 import { useDispatch } from 'react-redux'
-
-// const country = useSelector((state: AppState) => state.countries?.searchCountry)
-// console.log('countries', countries)
-// console.log('country', country)
+import ThemeContext from '../../components/Context'
 
 export default function CartPageDrawer() {
   const dispatch = useDispatch()
@@ -26,6 +23,7 @@ export default function CartPageDrawer() {
     },
   })
   const classes = useStyles()
+  const { themes } = useContext(ThemeContext)
 
   const searchKey = useSelector(
     (state: AppState) => state.countries.searchCountry
@@ -63,6 +61,7 @@ export default function CartPageDrawer() {
 
                 <TableCell align="right">
                   <Button
+                    style={{ backgroundColor: themes.background }}
                     variant="contained"
                     color="primary"
                     onClick={() => dispatch(removeCountry(country))}

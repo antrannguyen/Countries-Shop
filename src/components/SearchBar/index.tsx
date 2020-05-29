@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import { searchCountry } from '../../redux/actions'
 import ShoppingCart from '../ShoppingCart/index'
@@ -13,14 +13,16 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
-import CartPageDrawer from '../CartPageDrawer'
-import ThemePageDrawer from '../ThemeChangeDrawer'
+import CartPageDrawer from '../../containers/CartPageDrawer'
+import ThemePageDrawer from '../../containers/ThemeChangeDrawer'
+import ThemeContext from '../Context'
 
 import { useStyles } from './style'
 
 export default function SearchAppBar() {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const { themes } = useContext(ThemeContext)
 
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -38,7 +40,7 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: themes.background }}>
         <Toolbar>
           <ThemePageDrawer />
 

@@ -32,5 +32,21 @@ export const useStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: drawerWidth,
     },
+    drawerHeader: {
+      // display: 'flex',
+      // alignItems: 'center',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      // justifyContent: 'flex-start',
+    },
+    title: {
+      marginTop: 50,
+    },
+    button: {
+      width: 40,
+      marginBottom: 15,
+      marginLeft: 170,
+    },
   })
 )

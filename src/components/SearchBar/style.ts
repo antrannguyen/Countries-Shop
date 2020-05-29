@@ -58,12 +58,12 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
 
     //test
-    // appBar: {
-    //   transition: theme.transitions.create(['margin', 'width'], {
-    //     easing: theme.transitions.easing.sharp,
-    //     duration: theme.transitions.duration.leavingScreen,
-    //   }),
-    // },
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
       // transition: theme.transitions.create(['margin', 'width'], {
