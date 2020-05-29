@@ -5,7 +5,7 @@ const drawerWidth = 450
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      flexGrow: 0,
     },
     menuButton: {
       marginRight: theme.spacing(0.5),
@@ -58,18 +58,18 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
 
     //test
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
+    // appBar: {
+    //   transition: theme.transitions.create(['margin', 'width'], {
+    //     easing: theme.transitions.easing.sharp,
+    //     duration: theme.transitions.duration.leavingScreen,
+    //   }),
+    // },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+      // transition: theme.transitions.create(['margin', 'width'], {
+      //   easing: theme.transitions.easing.easeOut,
+      //   duration: theme.transitions.duration.enteringScreen,
+      // }),
       marginRight: drawerWidth,
     },
 
@@ -78,34 +78,34 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     drawer: {
       width: drawerWidth,
-      flexShrink: 0,
+      // flexShrink: 0,
     },
     drawerPaper: {
       width: drawerWidth,
     },
     drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
+      // display: 'flex',
+      // alignItems: 'center',
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
-      justifyContent: 'flex-start',
+      // justifyContent: 'flex-start',
     },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginRight: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginRight: 0,
-    },
+    // content: {
+    //   flexGrow: 1,
+    //   padding: theme.spacing(1),
+    //   transition: theme.transitions.create('margin', {
+    //     easing: theme.transitions.easing.sharp,
+    //     duration: theme.transitions.duration.leavingScreen,
+    //   }),
+    //   marginRight: -drawerWidth,
+    // },
+    // contentShift: {
+    //   transition: theme.transitions.create('margin', {
+    //     easing: theme.transitions.easing.easeOut,
+    //     duration: theme.transitions.duration.enteringScreen,
+    //   }),
+    //   marginRight: 0,
+    // },
   })
 )

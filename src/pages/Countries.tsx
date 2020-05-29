@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { requestAPIs } from '../redux/actions'
-import CountriesTable from '../components/TableCountries'
-// import TemporaryDrawer from '../components/CartPageDrawer'
+import CountriesTable from '../components/CountriesPage'
 
 export default function Countries() {
   const dispatch = useDispatch()
@@ -13,7 +12,6 @@ export default function Countries() {
 
   return (
     <div>
-      {/* <TemporaryDrawer /> */}
       <CountriesTable />
     </div>
   )

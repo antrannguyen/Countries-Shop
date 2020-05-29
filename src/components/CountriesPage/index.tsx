@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import SearchAppBar from '../SearchBar'
 import { addCountry } from '../../redux/actions/countries'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 // const country = useSelector((state: AppState) => state.countries?.searchCountry)
 // console.log('countries', countries)
@@ -42,12 +43,12 @@ export default function CountriesTable() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Flag</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Languages</TableCell>
-            <TableCell align="right">Population</TableCell>
-            <TableCell align="right">Region</TableCell>
-            <TableCell align="right">Add Items</TableCell>
+            <TableCell>Flag</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Languages</TableCell>
+            <TableCell>Population</TableCell>
+            <TableCell>Region</TableCell>
+            <TableCell>Add Items</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -67,15 +68,17 @@ export default function CountriesTable() {
                     alt={`Flag of ${country.name}`}
                   />
                 </TableCell>
-                <TableCell align="right">{country.name}</TableCell>
-                <TableCell align="right">
+                <TableCell>
+                  <Link to={`/name/${country.name}`}>{country.name}</Link>
+                </TableCell>
+                <TableCell>
                   {country.languages.map((lang, index) => (
                     <li key={index}>{lang.name}</li>
                   ))}
                 </TableCell>
-                <TableCell align="right">{country.population}</TableCell>
-                <TableCell align="right">{country.region}</TableCell>
-                <TableCell align="right">
+                <TableCell>{country.population}</TableCell>
+                <TableCell>{country.region}</TableCell>
+                <TableCell>
                   <Button
                     variant="contained"
                     color="primary"

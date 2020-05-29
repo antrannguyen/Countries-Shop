@@ -14,7 +14,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import CartPageDrawer from '../CartPageDrawer'
-import ThemePage from '../ThemeChangePage'
+import ThemePageDrawer from '../ThemeChangeDrawer'
 
 import { useStyles } from './style'
 
@@ -40,7 +40,7 @@ export default function SearchAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <ThemePage />
+          <ThemePageDrawer />
 
           <Typography className={classes.title} variant="h6" noWrap>
             Search country

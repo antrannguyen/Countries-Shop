@@ -10,7 +10,7 @@ import CartPageDrawer from '../CartPageDrawer'
 
 import { useStyles } from '../SearchBar/style'
 
-export default function ThemePage() {
+export default function ThemePageDrawer() {
   const classes = useStyles()
 
   const theme = useTheme()
@@ -45,7 +45,7 @@ export default function ThemePage() {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
+            {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
